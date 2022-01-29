@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=”utf-8″>
+        <link rel="stylesheet" href="styles.css">
+        <title>Advanced Wordle Suite</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h1>Advanced Wordle Suite</h1>
+                <h3>A game.</h3>
+            </div>
+            <div class="one">
+                <h2>How To Play</h2>
+                <p>
+                    The goal of the game is to find the randomly selected daily word.
+                    Choose letters by clicking them, filling in each space.
+                    Click enter to submit. 
+                    Yellow letters are in the solution, but placed incorrectly. Green letters are both in the solution and in the correct location.
+                </p>
+            
+                <h2>Hints</h2>
+                <button>Press For Hint</button>
+                <p id="hint1">
+                    Hint 1: How many vowels in solution.
+                </p>
+                <p id="hint2">
+                    Hint 2: One letter in solution.
+                </p>
+                <p id="hint3">
+                    Hint 3: One letter in correct position of solution.
+                </p>
+                <p id="hint4">
+                    Hint 4: Definition of solution.
+                </p>
+                <p id="hint5">
+                    Hint 5: Reveal solution.
+                </p>
+            </div>
+            <div class="two">
+                <iframe src="wordle/index.html" id="WiFrame" width="100%" height="100%"></iframe>
+            </div>
+            <div class="three">
+                <h2>Login / Sign Up</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username"><br><br>
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password"><br><br>
+                <button>Sign Up</button>
+                <button>Login</button>
+                <p>
+                    Add friends, see their scores, and more.
+                </p>
+
+                <h2>Friends</h2> {
+                    <p>
+                        <button>Add Friend</button>
+                        <button>Remove Friend</button>
+                    </p>
+                }
+            </div>
+
+        </div>
+    </body>
+    <script>
+        item = JSON.parse(localStorage.getItem("gameState"));
+        console.log(item);
+        console.log(item.gameStatus);
+        //document.getElementsByClassName("one")[0].innerHTML = item.gameStatus;
+    </script>
+</html>

@@ -1,0 +1,50 @@
+body {
+    background-color: #121213;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    grid-auto-rows: minmax(100px, auto);
+    color: #d7dadc;
+    }
+.header {
+    grid-column: 1 / 8;
+    grid-row: 1;
+    text-align: center;
+}    
+.one {
+    grid-column: 2;
+    grid-row: 2 / 7;
+}
+.one > h2 {
+    text-align: center;
+}
+.two {
+    grid-column: 3 / 6;
+    grid-row: 2 / 7;
+    max-height: 700px;
+}
+.three {
+    grid-column: 6;
+    grid-row: 2 / 7;
+}
+.three > h2 {
+    text-align: center;
+}
+.three > input {
+    float: right;
+}
+iframe {
+    margin-left: auto;
+    margin-right: auto;
+}
+button {
+    width:40%;
+    margin-left:30%;
+    margin-right:30%;
+}
+.buttongroup {
+    float: middle;
+}
