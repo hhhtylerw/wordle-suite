@@ -45,6 +45,21 @@ button {
     margin-left:30%;
     margin-right:30%;
 }
-.buttongroup {
-    float: middle;
+.buttons {
+    width: 200px;
+    margin: 0 auto;
+}
+.action_btn {
+    display: inline-block;
+    width: calc(50% - 4px);
+    margin: 0 auto;
+}
+.scrollbar {
+    position: relative;
+    height: 158px;
+    width: 100%;
+    overflow: auto;
+    }
+.scrollwrapper {
+    display: block;
 }
