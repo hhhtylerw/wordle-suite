@@ -48,19 +48,22 @@
                 <h2>Account</h2>
                 <div class="account" id="account">
                   <label for="username">Username:</label>
-                  <input type="text" id="username" name="username" id="username" placeholder="3 - 9 Characters"><br><br>
+                  <input style="float: right;" type="text" id="username" name="username" id="username" placeholder="3 - 9 Characters"><br><br>
                   <label for="password">Password:</label>
-                  <input type="password" id="password" name="password" id="password" placeholder="3 - 9 Characters"><br><br>
+                  <input style="float: right;" type="password" id="password" name="password" id="password" placeholder="3 - 9 Characters"><br><br>
                   <div class="buttons">
                       <button name="submit" class="action_btn submit" type="submit" value="signup" onclick="signUp()">Sign Up</button>
                       <button name="submit" class="action_btn cancel" type="submit" value="login" onclick="login()">Login</button>
                   </div>
+                  <p>
+                    Add friends, see their scores, and more.
+                  </p>
                 </div>
 
-                
-                <p>
-                    Add friends, see their scores, and more.
-                </p>
+                <p id="welcome">Welcome, h3x.</p>
+                <p id="plays">Plays: </p>
+                <p id="wins">Wins: </p>
+                <p id="losses">Losses: </p>
 
                 <h2>Friends</h2>
                 <label for="addfriend">Friend Code:</label>
@@ -155,6 +158,10 @@
 
               if (out.message == "Successfully created account") {
                 document.getElementById("account").remove();
+                document.getElementById("welcome").innerHTML = "Welcome, " + username + ".";
+                document.getElementById("plays").innerHTML = "Plays: " + out.plays;
+                document.getElementById("wins").innerHTML = "Wins: " + out.wins;
+                document.getElementById("losses").innerHTML = "Losses: " + out.losses;
               }
   
           })
