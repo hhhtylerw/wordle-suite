@@ -95,6 +95,7 @@
                 </div>
 
         </div>
+        <p hidden id="userlogin"></p>
     </body>
     <script src="scripts.js"></script>
     <script>
@@ -117,6 +118,7 @@
                 document.getElementById("losses").innerHTML = "Losses: " + out.losses;
 
                 document.getElementById("friendcode").innerHTML = "Your Code: " + username;
+                document.getElementById("userlogin").innerHTML = username;
               }
           })
           .catch(err => {
@@ -143,6 +145,7 @@
               document.getElementById("losses").innerHTML = "Losses: " + out.losses;
 
               document.getElementById("friendcode").innerHTML = "Your Code: " + username;
+              document.getElementById("userlogin").innerHTML = username;
             }
         })
         .catch(err => {
@@ -180,8 +183,21 @@
 
     async function addFriend() {
       console.log("addFriend() called");
+      username = document.getElementById("userlogin").value;
       friend = document.getElementById("addfriend").value;
-      console.log(friend);
+      console.log(username, friend);
+      let url = 'https://floating-waters-21228.herokuapp.com/addfriend' + '?username=' + username + '&friend=' + friend;
+      fetch(url)
+      .then(res => res.json())
+      .then(out => {
+          console.log('Checkout this JSON! ', out);
+          if (out.message == "Successfully added friend") {
+            leaderboard(username);
+          }
+      })
+      .catch(err => {
+          console.log('Error: ', err);
+      });
 
     }
     </script>
