@@ -183,8 +183,8 @@
 
     async function addFriend() {
       console.log("addFriend() called");
-      username = document.getElementById("userlogin").innerHTML;
-      friend = document.getElementById("addfriend").value;
+      var username = document.getElementById("userlogin").value;
+      var friend = document.getElementById("addfriend").value;
       console.log(username, friend);
       let url = 'https://floating-waters-21228.herokuapp.com/addfriend' + '?username=' + username + '&friend=' + friend;
       console.log(url)
