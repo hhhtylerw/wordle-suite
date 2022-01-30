@@ -20,14 +20,6 @@ var (
 	salt   string
 )
 
-/*type Account struct {
-	Username string   `json:"username"`
-	Friends  []string `json:"friends"`
-	Plays    int      `json:"plays"`
-	Wins     int      `json:"wins"`
-	Losses   int      `json:"losses"`
-}*/
-
 func init() {
 	godotenv.Load()
 	salt = os.Getenv("SALT")
