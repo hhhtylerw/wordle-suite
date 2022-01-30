@@ -8,7 +8,7 @@ async function hint() {
 
     switch (hintCount) {
         case 1: // How many vowels in solution
-            await hint5();
+            await hint1();
             break;
         case 2: // One letter in solution
             randomLetter = gameState.solution.charAt(Math.floor(Math.random() * (gameState.solution.length)));
@@ -32,6 +32,17 @@ async function hint() {
     }
 }
 
+async function hint1() { // Calculate # of vowels in solution
+    vowels = "aeiou";
+    vowelsCount = 0;
+    for (i = 0; i < gameState.solution.length; i++) {
+        if (vowels.includes(gameState.solution.charAt(i))) {
+            vowelsCount++;
+        }
+    }
+    document.getElementById("hint1").innerHTML = "Hint 1: There are " + vowelsCount + " vowels in the solution.";
+}
+
 async function hint4() { // Read dictionary API 
     console.log("Hint 4");
     document.getElementById("hint4").innerHTML = "Hint 4: Fetching definition...";
@@ -48,21 +59,19 @@ async function hint4() { // Read dictionary API
     });
 }
 
-async function hint5() { // Calculate # of vowels in solution
-    vowels = "aeiou";
-    vowelsCount = 0;
-    for (i = 0; i < gameState.solution.length; i++) {
-        if (vowels.includes(gameState.solution.charAt(i))) {
-            vowelsCount++;
-        }
-    }
-    document.getElementById("hint1").innerHTML = "Hint 1: There are " + vowelsCount + " vowels in the solution.";
-}
 
-function testResponse() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://floating-waters-21228.herokuapp.com//signup?username=test6&password=yes", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send();
-    console.log(xhr.responseText);
+
+async function testResponse() {
+    console.log("Test Response");
+    let url = 'https://floating-waters-21228.herokuapp.com/signup?username=test42&password=test';
+    fetch(url)
+    .then(res => res.json())
+    .then(out => {
+        console.log('Checkout this JSON! ', out);
+        //document.getElementById("hint4").innerHTML = "Hint 4: The definition of the solution is \"" + out[0].meanings[0].definitions[0].definition + "\"";
+    })
+    .catch(err => {
+        console.log('Error: ', err);
+        //document.getElementById("hint4").innerHTML = "Hint 4: Error fetching definition.";
+    });
 }
