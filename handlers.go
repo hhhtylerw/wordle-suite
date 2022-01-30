@@ -11,7 +11,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 	username := r.Form.Get("username")
 	password := r.Form.Get("password")
 	fmt.Println(username, password)
-	if username == "" || password == "" {
+	if username == "" || password == "" || len(username) > 20 || len(password) > 20 {
 		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username and password required"})
 		return
 	}
@@ -33,10 +33,12 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		"wins":     0,
 		"losses":   0,
 	})
-	w.Header().Set("Session", username)
-	respondWithJson(w, http.StatusOK, map[string]string{
+	userStruct := getAccount(username)
+	respondWithJson(w, http.StatusOK, userStruct)
+
+	/*respondWithJson(w, http.StatusOK, map[string]interface{}{
 		"message": "Successfully created account",
-	})
+	})*/
 }
 
 func usernameAvailable(username string) bool { // Check if username exists in database
@@ -49,7 +51,6 @@ func usernameAvailable(username string) bool { // Check if username exists in da
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-
 	w.Write([]byte("Hello, World!"))
 }
 

@@ -20,6 +20,14 @@ var (
 	salt   string
 )
 
+type Account struct {
+	Username string   `json:"username"`
+	Friends  []string `json:"friends"`
+	Plays    int      `json:"plays"`
+	Wins     int      `json:"wins"`
+	Losses   int      `json:"losses"`
+}
+
 func init() {
 	godotenv.Load()
 	salt = os.Getenv("SALT")
@@ -59,4 +67,16 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
+}
+
+func getAccount(username string) Account {
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	userStruct := Account{
+		Username: userAccount.Data()["username"].(string),
+		Friends:  userAccount.Data()["friends"].([]string),
+		Plays:    userAccount.Data()["plays"].(int),
+		Wins:     userAccount.Data()["wins"].(int),
+		Losses:   userAccount.Data()["losses"].(int),
+	}
+	return userStruct
 }
