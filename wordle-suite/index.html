@@ -157,6 +157,7 @@
               console.log('Checkout this JSON! ', out);
 
               if (out.message == "Successfully created account") {
+                await new Promise(r => setTimeout(r, 500));
                 document.getElementById("account").remove();
                 document.getElementById("welcome").innerHTML = "Welcome, " + username + ".";
                 document.getElementById("plays").innerHTML = "Plays: " + out.plays;
