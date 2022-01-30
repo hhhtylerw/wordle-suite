@@ -176,7 +176,7 @@
         username = document.getElementById("username").value;
         password = document.getElementById("password").value;
         console.log(username, password);
-        let url = 'https://floating-waters-21228.herokuapp.com/signup' + '?username=' + username + '&password=' + password;
+        let url = 'https://floating-waters-21228.herokuapp.com/login' + '?username=' + username + '&password=' + password;
         fetch(url)
         .then(res => res.json())
         .then(out => {
