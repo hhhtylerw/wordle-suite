@@ -73,7 +73,7 @@
                 <label class="control-label">Your Code: gZk1aRvNA</label>
                 <h2>Leaderboard</h2>
                 <div class="scrollwrapper scrollbar">
-                  <table class="leaderboard">
+                  <table id="leaderboard">
                     <thead>
                       <tr>
                         <th scope="col">#&nbsp;&nbsp;</th>
@@ -201,8 +201,16 @@
       .then(res => res.json())
       .then(out => {
           console.log('Friends JSON: ', out);
-          for (var key in out) {
+
+          var table = document.getElementById("leaderboard");
+          for (var key in out) { // POPULATE LEADERBOARD TABLE
             console.log(key);
+            var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + "h" + '</td>' +
+                '<td>' + "3" + '</td>' +
+                '<td>' + "x" + '</td>';
+                table.appendChild(tr);
+
           }
       })
       .catch(err => {
