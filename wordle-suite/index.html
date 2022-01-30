@@ -48,13 +48,12 @@
                 <h2>Login / Sign Up</h2>
 
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="3 - 9 Characters"><br><br>
+                <input type="text" id="username" name="username" id="username" placeholder="3 - 9 Characters"><br><br>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="3 - 9 Characters"><br><br>
+                <input type="password" id="password" name="password" id="password" placeholder="3 - 9 Characters"><br><br>
                 <div class="buttons">
                     <button name="submit" class="action_btn submit" type="submit" value="signup" onclick="signUp()">Sign Up</button>
                     <button name="submit" class="action_btn cancel" type="submit" value="login" onclick="login()">Login</button>
-                    <p id="saved"></p>
                 </div>
 
                 
@@ -144,8 +143,10 @@
     <script>
       async function signUp() {
           console.log("signUp() called");
-          document.getElementById("hint4").innerHTML = "Hint 4: Fetching definition...";
-          let url = 'https://floating-waters-21228.herokuapp.com/test';
+          username = document.getElementById("username").value;
+          password = document.getElementById("password").value;
+          console.log(username, password);
+          let url = 'https://floating-waters-21228.herokuapp.com/signup' + '?username=' + username + '&password=' + password;
           fetch(url)
           .then(res => res.json())
           .then(out => {
@@ -154,7 +155,9 @@
           .catch(err => {
               console.log('Error: ', err);
           });
-              }
+      }
+
+
           async function login() {
             console.log("login() called");
     }
