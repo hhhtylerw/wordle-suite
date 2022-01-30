@@ -168,15 +168,66 @@ func AddFriend(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, map[string]string{"message": "Successfully added friend"})
 }
 
-func Test(w http.ResponseWriter, r *http.Request) {
-	respondWithJson(w, http.StatusOK, map[string]string{"message": "Hello, World!"})
+func AddWin(w http.ResponseWriter, r *http.Request) {
+	// Get username from request
+	r.ParseForm()
+	username := r.Form.Get("username")
+	if username == "" {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username required"})
+		return
+	}
+
+	// Verify account exists
+	if usernameAvailable(username) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Account does not exist"})
+		return
+	}
+
+	// Add win to user account
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	plays := userAccount.Data()["plays"].(int64)
+	wins := userAccount.Data()["wins"].(int64)
+	wins++
+	plays++
+	client.Collection("accounts").Doc(username).Set(ctx, map[string]interface{}{
+		"plays": plays,
+		"wins":  wins,
+	}, firestore.MergeAll)
+
+	respondWithJson(w, http.StatusOK, map[string]string{"message": "Successfully added win"})
+
 }
 
-func contains(s []interface{}, e interface{}) bool {
-	for _, a := range s {
-		if a.(string) == e.(string) {
-			return true
-		}
+func AddLoss(w http.ResponseWriter, r *http.Request) {
+	// Get username from request
+	r.ParseForm()
+	username := r.Form.Get("username")
+	if username == "" {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username required"})
+		return
 	}
-	return false
+
+	// Verify account exists
+	if usernameAvailable(username) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Account does not exist"})
+		return
+	}
+
+	// Add loss to user account
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	plays := userAccount.Data()["plays"].(int64)
+	losses := userAccount.Data()["losses"].(int64)
+	losses++
+	plays++
+	client.Collection("accounts").Doc(username).Set(ctx, map[string]interface{}{
+		"plays":  plays,
+		"losses": losses,
+	}, firestore.MergeAll)
+
+	respondWithJson(w, http.StatusOK, map[string]string{"message": "Successfully added loss"})
+
+}
+
+func Test(w http.ResponseWriter, r *http.Request) {
+	respondWithJson(w, http.StatusOK, map[string]string{"message": "Hello, World!"})
 }

@@ -99,6 +99,8 @@
     </body>
     <script src="scripts.js"></script>
     <script>
+      // Scripts for account functionality
+
       async function signUp() {
           console.log("signUp() called");
           username = document.getElementById("username").value;
@@ -193,7 +195,7 @@
       .then(out => {
           console.log('Checkout this JSON! ', out);
           if (out.message == "Successfully added friend") {
-            leaderboard(username);
+            
           }
       })
       .catch(err => {
@@ -201,5 +203,26 @@
       });
 
     }
+    </script>
+    <script>
+      // Scripts for game functionality
+      hasPlayed = false;
+      window.addEventListener('storage', () => {
+        console.log("storage event");
+        var username = document.getElementById("userlogin").value;
+        gameState = JSON.parse(localStorage.getItem("gameState"));
+        console.log(gameState);
+        console.log(gameState.gameStatus);
+        if (gameState.gameStatus == "WIN" && hasPlayed == false) {
+          let url = 'https://floating-waters-21228.herokuapp.com/addwin' + '?username=' + username;
+          fetch(url)
+          //hasPlayed = true;
+        } else if (gameState.gameStatus == "FAIL" && hasPlayed == false) {
+          let url = 'https://floating-waters-21228.herokuapp.com/addloss' + '?username=' + username;
+          fetch(url)
+          //hasPlayed = true;
+        }
+      });
+
     </script>
 </html>

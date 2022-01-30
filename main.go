@@ -54,6 +54,8 @@ func main() {
 	http.HandleFunc("/account", Account)
 	http.HandleFunc("/friends", Friends)
 	http.HandleFunc("/addfriend", AddFriend)
+	http.HandleFunc("/addwin", AddWin)
+	http.HandleFunc("/addloss", AddLoss)
 	http.HandleFunc("/test", Test)
 	http.ListenAndServe(":"+port, nil)
 }
@@ -70,4 +72,13 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
+}
+
+func contains(s []interface{}, e interface{}) bool {
+	for _, a := range s {
+		if a.(string) == e.(string) {
+			return true
+		}
+	}
+	return false
 }
