@@ -106,7 +106,7 @@
           username = document.getElementById("username").value;
           password = document.getElementById("password").value;
           console.log(username, password);
-          let url = 'http://wordlesuite.tech/signup' + '?username=' + username + '&password=' + password;
+          let url = 'https://floating-waters-21228.herokuapp.com/signup' + '?username=' + username + '&password=' + password;
           fetch(url)
           .then(res => res.json())
           .then(out => {
@@ -135,7 +135,7 @@
         username = document.getElementById("username").value;
         password = document.getElementById("password").value;
         console.log(username, password);
-        let url = 'http://wordlesuite.tech/login' + '?username=' + username + '&password=' + password;
+        let url = 'https://floating-waters-21228.herokuapp.com/login' + '?username=' + username + '&password=' + password;
         fetch(url)
         .then(res => res.json())
         .then(out => {
@@ -160,7 +160,7 @@
 
     async function leaderboard(username) {
       console.log("leaderboard() called");
-      let url = 'http://wordlesuite.tech/friends?username=' + username;
+      let url = 'https://floating-waters-21228.herokuapp.com/friends?username=' + username;
       fetch(url)
       .then(res => res.json())
       .then(out => {
@@ -190,7 +190,7 @@
       var username = document.getElementById("userlogin").value;
       var friend = document.getElementById("addfriend").value;
       console.log(username, friend);
-      let url = 'http://wordlesuite.tech/addfriend' + '?username=' + username + '&friend=' + friend;
+      let url = 'https://floating-waters-21228.herokuapp.com/addfriend' + '?username=' + username + '&friend=' + friend;
       console.log(url)
       fetch(url)
       .then(res => res.json())
@@ -216,11 +216,11 @@
         console.log(gameState);
         console.log(gameState.gameStatus);
         if (gameState.gameStatus == "WIN" && hasPlayed == false) {
-          let url = 'http://wordlesuite.tech/addwin' + '?username=' + username;
+          let url = 'https://floating-waters-21228.herokuapp.com/addwin' + '?username=' + username;
           fetch(url)
           hasPlayed = true;
         } else if (gameState.gameStatus == "FAIL" && hasPlayed == false) {
-          let url = 'http://wordlesuite.tech/addloss' + '?username=' + username;
+          let url = 'https://floating-waters-21228.herokuapp.com/addloss' + '?username=' + username;
           fetch(url)
           hasPlayed = true;
         }
