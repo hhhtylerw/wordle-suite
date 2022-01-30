@@ -13,7 +13,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 
 	// Verify username is available
 	if !usernameAvailable(username) {
-		respondWithJson(w, http.StatusConflict, map[string]interface{}{
+		respondWithJson(w, http.StatusConflict, map[string]string{}{
 			"message": "Username taken",
 		})
 		return
@@ -29,7 +29,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		"losses":   0,
 	})
 	w.Header().Set("Session", username)
-	respondWithJson(w, http.StatusOK, map[string]interface{}{
+	respondWithJson(w, http.StatusOK, map[string]string{}{
 		"message": "Successfully created account",
 	})
 }
