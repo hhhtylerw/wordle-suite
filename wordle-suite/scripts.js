@@ -61,7 +61,7 @@ async function hint4() { // Read dictionary API
 
 
 
-async function testResponse() {
+function testResponse() {
     console.log("Test Response");
     let url = 'https://floating-waters-21228.herokuapp.com/signup?username=test42&password=test';
     fetch(url)
