@@ -33,7 +33,7 @@ body {
 .three > h2 {
     text-align: center;
 }
-.three > form > input {
+.three > .account > input {
     float: right;
 }
 .three > input {
