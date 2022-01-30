@@ -33,6 +33,9 @@ body {
 .three > h2 {
     text-align: center;
 }
+.three > form > input {
+    float: right;
+}
 .three > input {
     float: right;
 }

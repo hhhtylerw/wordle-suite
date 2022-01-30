@@ -8,8 +8,8 @@
     <body>
         <div class="wrapper">
             <div class="header">
-                <h1>Advanced Wordle Suite</h1>
-                <h3>A game.</h3>
+                <h1>Wordle Suite</h1>
+                <h3>A better word game.</h3>
             </div>
             <div class="one">
                 <h2>How To Play</h2>
@@ -46,15 +46,20 @@
             </div>
             <div class="three">
                 <h2>Login / Sign Up</h2>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="3 - 9 Characters"><br><br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="3 - 9 Characters"><br><br>
-                <div class="buttons">
-                    <button name="submit" class="action_btn submit" type="submit" value="Save" onclick="myFunction()">Sign Up</button>
-                    <button name="submit" class="action_btn cancel" type="submit" value="Cancel" onclick="myFunction2()">Login</button>
-                    <p id="saved"></p>
-                </div>
+
+                <form action="http://www.foo.com" method="POST" target="dummyframe" onsubmit="setTimeout(function () { window.location.reload(); }, 50)">
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" placeholder="3 - 9 Characters"><br><br>
+                  <label for="password">Password:</label>
+                  <input type="password" id="password" name="password" placeholder="3 - 9 Characters"><br><br>
+                  <div class="buttons">
+                      <button name="submit" class="action_btn submit" type="submit" value="signup" onclick="myFunction()">Sign Up</button>
+                      <button name="submit" class="action_btn cancel" type="submit" value="login" onclick="myFunction2()">Login</button>
+                      <p id="saved"></p>
+                  </div>
+                </form>
+
+                
                 <p>
                     Add friends, see their scores, and more.
                 </p>
@@ -136,6 +141,7 @@
                 </div>
 
         </div>
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
     </body>
     <script src="scripts.js"></script>
 </html>
