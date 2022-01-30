@@ -145,4 +145,20 @@
         <button onclick="testResponse()">TEST</button>
     </body>
     <script src="scripts.js"></script>
+    <script>
+      function testResponse() {
+        console.log("Test Response");
+        let url = 'https://floating-waters-21228.herokuapp.com/signup?username=test42&password=test';
+        fetch(url)
+        .then(res => res.json())
+        .then(out => {
+            console.log('Checkout this JSON! ', out);
+            //document.getElementById("hint4").innerHTML = "Hint 4: The definition of the solution is \"" + out[0].meanings[0].definitions[0].definition + "\"";
+        })
+        .catch(err => {
+            console.log('Error: ', err);
+            //document.getElementById("hint4").innerHTML = "Hint 4: Error fetching definition.";
+        });
+      }
+    </script>
 </html>
