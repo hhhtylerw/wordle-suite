@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 func SignUp(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +54,47 @@ func usernameAvailable(username string) bool { // Check if username exists in da
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, World!"))
+	// Get username and password from request
+	r.ParseForm()
+	username := r.Form.Get("username")
+	password := r.Form.Get("password")
+	fmt.Println(username, password)
+
+	// Verify account exists
+	if usernameAvailable(username) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Account does not exist"})
+		return
+	}
+
+	// Verify password is correct
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	if (getSHA256(password + salt)) != userAccount.Data()["password"].(string) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Incorrect password"})
+		return
+	} else {
+		respondWithJson(w, http.StatusOK, map[string]string{
+			"message": "Successfully logged in",
+			"friends": "friends3x",
+			"plays":   strconv.FormatInt(userAccount.Data()["plays"].(int64), 10),
+			"wins":    strconv.FormatInt(userAccount.Data()["wins"].(int64), 10),
+			"losses":  strconv.FormatInt(userAccount.Data()["losses"].(int64), 10),
+		})
+	}
+
+}
+
+func Account(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	username := r.Form.Get("username")
+	if username == "" {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username required"})
+		return
+	}
+
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	if userAccount.Exists() {
+		fmt.Println("User account exists")
+	}
 }
 
 func Test(w http.ResponseWriter, r *http.Request) {

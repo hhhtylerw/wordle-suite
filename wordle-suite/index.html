@@ -60,10 +60,10 @@
                   </p>
                 </div>
 
-                <p id="welcome">Welcome, h3x.</p>
-                <p id="plays">Plays: </p>
-                <p id="wins">Wins: </p>
-                <p id="losses">Losses: </p>
+                <p id="welcome"></p>
+                <p id="plays"></p>
+                <p id="wins"></p>
+                <p id="losses"></p>
 
                 <h2>Friends</h2>
                 <label for="addfriend">Friend Code:</label>
@@ -171,10 +171,30 @@
 
           
       }
+      async function login() {
+        console.log("login() called");
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        console.log(username, password);
+        let url = 'https://floating-waters-21228.herokuapp.com/signup' + '?username=' + username + '&password=' + password;
+        fetch(url)
+        .then(res => res.json())
+        .then(out => {
+            console.log('Checkout this JSON! ', out);
 
+            if (out.message == "Successfully logged in") {
+              document.getElementById("account").remove();
+              document.getElementById("welcome").innerHTML = "Welcome, " + username + ".";
+              document.getElementById("plays").innerHTML = "Plays: " + out.plays;
+              document.getElementById("wins").innerHTML = "Wins: " + out.wins;
+              document.getElementById("losses").innerHTML = "Losses: " + out.losses;
+            }
 
-          async function login() {
-            console.log("login() called");
-    }
+        })
+        .catch(err => {
+            console.log('Error: ', err);
+        });
+
+    } 
     </script>
 </html>
