@@ -2,6 +2,9 @@ package main
 
 import "net/http"
 
-func One(w http.ResponseWriter, r *http.Request) {
+func SignUp(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello, World!"))
+}
+func Login(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello, World!"))
 }
