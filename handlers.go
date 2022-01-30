@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 func SignUp(w http.ResponseWriter, r *http.Request) {
@@ -33,12 +34,22 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		"wins":     0,
 		"losses":   0,
 	})
-	userStruct := getAccount(username)
-	respondWithJson(w, http.StatusOK, userStruct)
 
-	/*respondWithJson(w, http.StatusOK, map[string]interface{}{
-		"message": "Successfully created account",
-	})*/
+	// Respond with user account
+	userStruct := getAccount(username)
+	userFriends := "a"
+	for _, friend := range userStruct.Friends {
+		userFriends += friend + ","
+	}
+
+	respondWithJson(w, http.StatusOK, map[string]string{
+		"message":  "Successfully created account",
+		"username": userStruct.Username,
+		"friends":  userFriends,
+		"plays":    strconv.Itoa(userStruct.Plays),
+		"wins":     strconv.Itoa(userStruct.Wins),
+		"losses":   strconv.Itoa(userStruct.Losses),
+	})
 }
 
 func usernameAvailable(username string) bool { // Check if username exists in database
