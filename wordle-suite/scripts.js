@@ -58,3 +58,11 @@ async function hint5() { // Calculate # of vowels in solution
     }
     document.getElementById("hint1").innerHTML = "Hint 1: There are " + vowelsCount + " vowels in the solution.";
 }
+
+function testResponse() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://floating-waters-21228.herokuapp.com//signup?username=test6&password=yes", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send();
+    console.log(xhr.responseText);
+}
