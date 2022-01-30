@@ -10,6 +10,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	username := r.Form.Get("username")
 	password := r.Form.Get("password")
+	fmt.Println(username, password)
 	if username == "" || password == "" {
 		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username and password required"})
 		return

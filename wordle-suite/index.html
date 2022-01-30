@@ -144,26 +144,19 @@
     <script>
       async function signUp() {
           console.log("signUp() called");
-          fetch(url, {
-              method: 'POST',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  email: login,
-                  password: password,
-              })
+          document.getElementById("hint4").innerHTML = "Hint 4: Fetching definition...";
+          let url = 'https://floating-waters-21228.herokuapp.com/test';
+          fetch(url)
+          .then(res => res.json())
+          .then(out => {
+              console.log('Checkout this JSON! ', out);
           })
-          .then(function (a) {
-              return a.json(); // call the json method on the response to get JSON
-          })
-          .then(function (json) {
-              console.log(json)
-          })
-        }
-    async function login() {
-      console.log("login() called");
+          .catch(err => {
+              console.log('Error: ', err);
+          });
+              }
+          async function login() {
+            console.log("login() called");
     }
     </script>
 </html>
