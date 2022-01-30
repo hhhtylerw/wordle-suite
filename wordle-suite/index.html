@@ -69,8 +69,8 @@
                 <label for="addfriend">Friend Code:</label>
                 <input type="text" id="addfriend" name="addfriend" size="18"><br><br>
 
-                <input type="button" id="submitfriend" value="Add Friend"> 
-                <label class="control-label">Your Code: gZk1aRvNA</label>
+                <input type="button" id="submitfriend" value="Add Friend" onclick="addFriend()"> 
+                <label id="friendcode" class="control-label">Your Code: ----------------</label>
                 <h2>Leaderboard</h2>
                 <div class="scrollwrapper scrollbar">
                   <table id="leaderboard">
@@ -115,6 +115,8 @@
                 document.getElementById("plays").innerHTML = "Plays: " + out.plays;
                 document.getElementById("wins").innerHTML = "Wins: " + out.wins;
                 document.getElementById("losses").innerHTML = "Losses: " + out.losses;
+
+                document.getElementById("friendcode").innerHTML = "Your Code: " + username;
               }
           })
           .catch(err => {
@@ -172,6 +174,13 @@
       .catch(err => {
           console.log('Error: ', err);
       });
+    }
+
+    async function addFriend() {
+      console.log("addFriend() called");
+      friend = document.getElementById("addfriend").value;
+      console.log(friend);
+
     }
     </script>
 </html>

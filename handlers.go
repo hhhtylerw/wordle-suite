@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+
+	"cloud.google.com/go/firestore"
 )
 
 func SignUp(w http.ResponseWriter, r *http.Request) {
@@ -130,6 +132,51 @@ func Friends(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, friendsMap)
 }
 
+func AddFriend(w http.ResponseWriter, r *http.Request) {
+	// Get username and friend from request
+	r.ParseForm()
+	username := r.Form.Get("username")
+	friend := r.Form.Get("friend")
+	fmt.Println(username, friend)
+
+	// Verify account exists
+	if usernameAvailable(username) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Account does not exist"})
+		return
+	}
+
+	// Verify friend exists
+	if usernameAvailable(friend) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Friend does not exist"})
+		return
+	}
+
+	// Add friend to user account
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	friends := userAccount.Data()["friends"].([]interface{})
+	if contains(friends, friend) { // Return if friend is already in friends list
+		fmt.Println("Friend already exists")
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Friend already exists"})
+		return
+	}
+
+	friends = append(friends, friend)
+	client.Collection("accounts").Doc(username).Set(ctx, map[string]interface{}{
+		"friends": friends,
+	}, firestore.MergeAll)
+
+	respondWithJson(w, http.StatusOK, map[string]string{"message": "Successfully added friend"})
+}
+
 func Test(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, map[string]string{"message": "Hello, World!"})
+}
+
+func contains(s []interface{}, e interface{}) bool {
+	for _, a := range s {
+		if a.(string) == e.(string) {
+			return true
+		}
+	}
+	return false
 }
