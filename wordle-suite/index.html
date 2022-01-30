@@ -201,13 +201,13 @@
       .then(res => res.json())
       .then(out => {
           console.log('Friends JSON: ', out);
-
+          for (var key in out) {
+            console.log(key);
+          }
       })
       .catch(err => {
           console.log('Error: ', err);
       });
-
-      
     }
     </script>
 </html>
