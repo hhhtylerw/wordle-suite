@@ -21,7 +21,7 @@
                 </p>
             
                 <h2>Hints</h2>
-                <button>Press For Hint</button>
+                <button onclick="hint()">Press For Hint</button>
                 <p id="hint1">
                     Hint 1: How many vowels in solution.
                 </p>
@@ -37,6 +37,9 @@
                 <p id="hint5">
                     Hint 5: Reveal solution.
                 </p>
+                <p id="hint6">
+
+                </p>
             </div>
             <div class="two">
                 <iframe src="wordle/index.html" id="WiFrame" width="100%" height="100%"></iframe>
@@ -44,9 +47,9 @@
             <div class="three">
                 <h2>Login / Sign Up</h2>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="yourUsername"><br><br>
+                <input type="text" id="username" name="username" placeholder="1 - 9 Characters"><br><br>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="yourPassword"><br><br>
+                <input type="password" id="password" name="password" placeholder="3 - 9 Characters"><br><br>
                 <div class="buttons">
                     <button name="submit" class="action_btn submit" type="submit" value="Save" onclick="myFunction()">Sign Up</button>
                     <button name="submit" class="action_btn cancel" type="submit" value="Cancel" onclick="myFunction2()">Login</button>
@@ -64,45 +67,57 @@
                 <label class="control-label">Your Code: gZk1aRvNA</label>
                 <h2>Leaderboard</h2>
                 <div class="scrollwrapper scrollbar">
-                    <table class="table table-bordered table-striped mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col">#&nbsp;&nbsp;</th>
-                          <th scope="col">Friend&nbsp;</th>
-                          <th scope="col">Wins&nbsp;</th>
-                          <th scope="col">Plays&nbsp;</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
+                  <table class="table table-bordered table-striped mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">#&nbsp;&nbsp;</th>
+                        <th scope="col">Friend&nbsp;</th>
+                        <th scope="col">Wins&nbsp;</th>
+                        <th scope="col">Plays&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">6</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                      <tr>
+                          <th scope="row">6</th>
                           <td>Larry</td>
                           <td>the Bird</td>
                           <td>@twitter</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
                         </tr>
                         <tr>
                           <th scope="row">6</th>
@@ -111,27 +126,14 @@
                           <td>@twitter</td>
                         </tr>
                         <tr>
-                            <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                      </tbody>
-                    </table>
-                  
-                  </div>
+                          <th scope="row">6</th>
+                          <td>Larry</td>
+                          <td>the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
 
         </div>
     </body>
@@ -141,4 +143,5 @@
         console.log(item.gameStatus);
         //document.getElementsByClassName("one")[0].innerHTML = item.gameStatus;
     </script>
+    <script src="scripts.js"></script>
 </html>
