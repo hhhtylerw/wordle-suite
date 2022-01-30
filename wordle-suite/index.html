@@ -121,6 +121,7 @@
 
                 document.getElementById("friendcode").innerHTML = "Your Code: " + username;
                 document.getElementById("userlogin").value = username;
+                leaderboard(username);
               }
           })
           .catch(err => {
@@ -148,12 +149,13 @@
 
               document.getElementById("friendcode").innerHTML = "Your Code: " + username;
               document.getElementById("userlogin").value = username;
+              leaderboard(username);
             }
         })
         .catch(err => {
             console.log('Error: ', err);
         });
-        leaderboard(username);
+        
     } 
 
     async function leaderboard(username) {
