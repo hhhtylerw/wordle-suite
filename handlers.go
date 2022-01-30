@@ -10,10 +10,14 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	username := r.Form.Get("username")
 	password := r.Form.Get("password")
+	if username == "" || password == "" {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username and password required"})
+		return
+	}
 
 	// Verify username is available
 	if !usernameAvailable(username) {
-		respondWithJson(w, http.StatusConflict, map[string]string{
+		respondWithJson(w, http.StatusBadRequest, map[string]string{
 			"message": "Username taken",
 		})
 		return
@@ -46,4 +50,8 @@ func usernameAvailable(username string) bool { // Check if username exists in da
 func Login(w http.ResponseWriter, r *http.Request) {
 
 	w.Write([]byte("Hello, World!"))
+}
+
+func Test(w http.ResponseWriter, r *http.Request) {
+	respondWithJson(w, http.StatusOK, map[string]string{"message": "Hello, World!"})
 }

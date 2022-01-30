@@ -43,6 +43,7 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("wordle-suite")))
 	http.HandleFunc("/signup", SignUp)
 	http.HandleFunc("/login", Login)
+	http.HandleFunc("/test", Test)
 	http.ListenAndServe(":"+port, nil)
 }
 
