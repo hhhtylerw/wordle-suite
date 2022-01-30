@@ -27,7 +27,9 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		"losses":   0,
 	})
 	w.Header().Set("Session", username)
-	w.Write([]byte("Success"))
+	respondWithJson(w, http.StatusOK, map[string]interface{}{
+		"message": "Successfully created account",
+	})
 }
 
 func usernameAvailable(username string) bool { // Check if username exists in database
