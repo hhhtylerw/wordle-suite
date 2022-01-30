@@ -95,7 +95,7 @@
                 </div>
 
         </div>
-        <p hidden id="userlogin"></p>
+        <input hidden id="userlogin">
     </body>
     <script src="scripts.js"></script>
     <script>
@@ -118,7 +118,7 @@
                 document.getElementById("losses").innerHTML = "Losses: " + out.losses;
 
                 document.getElementById("friendcode").innerHTML = "Your Code: " + username;
-                document.getElementById("userlogin").innerHTML = username;
+                document.getElementById("userlogin").value = username;
               }
           })
           .catch(err => {
@@ -145,7 +145,7 @@
               document.getElementById("losses").innerHTML = "Losses: " + out.losses;
 
               document.getElementById("friendcode").innerHTML = "Your Code: " + username;
-              document.getElementById("userlogin").innerHTML = username;
+              document.getElementById("userlogin").value = username;
             }
         })
         .catch(err => {
