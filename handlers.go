@@ -13,7 +13,9 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 
 	// Verify username is available
 	if !usernameAvailable(username) {
-		w.Write([]byte("Username taken"))
+		respondWithJson(w, http.StatusConflict, map[string]interface{}{
+			"message": "Username taken",
+		})
 		return
 	}
 
