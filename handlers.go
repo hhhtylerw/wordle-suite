@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 )
 
 func SignUp(w http.ResponseWriter, r *http.Request) {
@@ -35,20 +34,12 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		"losses":   0,
 	})
 
-	// Respond with user account
-	userStruct := getAccount(username)
-	userFriends := "a"
-	for _, friend := range userStruct.Friends {
-		userFriends += friend + ","
-	}
-
 	respondWithJson(w, http.StatusOK, map[string]string{
-		"message":  "Successfully created account",
-		"username": userStruct.Username,
-		"friends":  userFriends,
-		"plays":    strconv.Itoa(userStruct.Plays),
-		"wins":     strconv.Itoa(userStruct.Wins),
-		"losses":   strconv.Itoa(userStruct.Losses),
+		"message": "Successfully created account",
+		"friends": "h3x,",
+		"plays":   "0",
+		"wins":    "0",
+		"losses":  "0",
 	})
 }
 
