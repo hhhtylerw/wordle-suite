@@ -218,11 +218,11 @@
         if (gameState.gameStatus == "WIN" && hasPlayed == false) {
           let url = 'https://floating-waters-21228.herokuapp.com/addwin' + '?username=' + username;
           fetch(url)
-          //hasPlayed = true;
+          hasPlayed = true;
         } else if (gameState.gameStatus == "FAIL" && hasPlayed == false) {
           let url = 'https://floating-waters-21228.herokuapp.com/addloss' + '?username=' + username;
           fetch(url)
-          //hasPlayed = true;
+          hasPlayed = true;
         }
       });
 
