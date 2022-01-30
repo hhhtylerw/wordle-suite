@@ -148,8 +148,15 @@
     <script>
       function testResponse() {
         console.log("Test Response");
-        let url = 'https://floating-waters-21228.herokuapp.com/signup?username=test42&password=test';
-        fetch(url)
+        let url = 'https://floating-waters-21228.herokuapp.com/signup?username=test3xx?password=123';
+        fetch(url, 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
         .then(res => {
           console.log(res);
           res.json()
