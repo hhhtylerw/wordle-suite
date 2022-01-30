@@ -24,7 +24,7 @@ async function hint() {
             await hint4();
             break;
         case 5: // Reveal solution
-            document.getElementById("hint5").innerHTML = "Hint 5: The soluton is \"" + gameState.solution + ".\"";
+            document.getElementById("hint5").innerHTML = "Hint 5: The solution is \"" + gameState.solution + ".\"";
             break;
         case 6: // Easter egg
             document.getElementById("hint6").innerHTML = "You already have the solution!";
