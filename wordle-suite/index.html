@@ -73,7 +73,7 @@
                 <label class="control-label">Your Code: gZk1aRvNA</label>
                 <h2>Leaderboard</h2>
                 <div class="scrollwrapper scrollbar">
-                  <table class="table table-bordered table-striped mb-0">
+                  <table class="leaderboard">
                     <thead>
                       <tr>
                         <th scope="col">#&nbsp;&nbsp;</th>
@@ -163,7 +163,6 @@
                 document.getElementById("wins").innerHTML = "Wins: " + out.wins;
                 document.getElementById("losses").innerHTML = "Losses: " + out.losses;
               }
-  
           })
           .catch(err => {
               console.log('Error: ', err);
@@ -181,7 +180,6 @@
         .then(res => res.json())
         .then(out => {
             console.log('Checkout this JSON! ', out);
-
             if (out.message == "Successfully logged in") {
               document.getElementById("account").remove();
               document.getElementById("welcome").innerHTML = "Welcome, " + username + ".";
@@ -189,12 +187,27 @@
               document.getElementById("wins").innerHTML = "Wins: " + out.wins;
               document.getElementById("losses").innerHTML = "Losses: " + out.losses;
             }
-
         })
         .catch(err => {
             console.log('Error: ', err);
         });
-
+        leaderboard(username);
     } 
+
+    async function leaderboard(username) {
+      console.log("leaderboard() called");
+      let url = 'https://floating-waters-21228.herokuapp.com/friends?username=' + username;
+      fetch(url)
+      .then(res => res.json())
+      .then(out => {
+          console.log('Friends JSON: ', out);
+
+      })
+      .catch(err => {
+          console.log('Error: ', err);
+      });
+
+      
+    }
     </script>
 </html>

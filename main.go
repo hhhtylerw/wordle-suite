@@ -52,6 +52,7 @@ func main() {
 	http.HandleFunc("/signup", SignUp)
 	http.HandleFunc("/login", Login)
 	http.HandleFunc("/account", Account)
+	http.HandleFunc("/friends", Friends)
 	http.HandleFunc("/test", Test)
 	http.ListenAndServe(":"+port, nil)
 }

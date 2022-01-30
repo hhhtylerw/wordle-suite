@@ -97,6 +97,39 @@ func Account(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Friends(w http.ResponseWriter, r *http.Request) {
+	// Get username from request
+	r.ParseForm()
+	username := r.Form.Get("username")
+	if username == "" {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Username required"})
+		return
+	}
+
+	if usernameAvailable(username) {
+		respondWithJson(w, http.StatusBadRequest, map[string]string{"message": "Account does not exist"})
+		return
+	}
+
+	userAccount, _ := client.Collection("accounts").Doc(username).Get(ctx)
+	friends := userAccount.Data()["friends"].([]interface{})
+	fmt.Println(friends)
+	friendsMap := make(map[string]map[string]string)
+
+	for i := 0; i < len(friends); i++ {
+		friend := friends[i].(string)
+		friendAccount, _ := client.Collection("accounts").Doc(friend).Get(ctx)
+		friendsMap[friend] = map[string]string{
+			"plays":  strconv.FormatInt(friendAccount.Data()["plays"].(int64), 10),
+			"wins":   strconv.FormatInt(friendAccount.Data()["wins"].(int64), 10),
+			"losses": strconv.FormatInt(friendAccount.Data()["losses"].(int64), 10),
+		}
+	}
+
+	fmt.Println(friendsMap)
+	respondWithJson(w, http.StatusOK, friendsMap)
+}
+
 func Test(w http.ResponseWriter, r *http.Request) {
 	respondWithJson(w, http.StatusOK, map[string]string{"message": "Hello, World!"})
 }
